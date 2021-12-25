@@ -3,13 +3,18 @@ package pages;
 import Driver.DriverFactory;
 import elements.AbstractElement;
 import elements.Button;
+import helpers.GeneratorRandomWords;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MainPage extends AbstractPage {
+    WebDriverWait webDriverWait = new WebDriverWait(webDriver, 3000);
+
     private final String ALERT_FRAME_WIN_BUTTON = "alertFrameWinButton";
 
     public MainPage(WebDriver webDriver){
@@ -22,10 +27,8 @@ public class MainPage extends AbstractPage {
     }
 
 
-
     public void alertFrameWinButtonOpen(){
         locators.get(ALERT_FRAME_WIN_BUTTON).click();
     }
-
 
 }

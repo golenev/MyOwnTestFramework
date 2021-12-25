@@ -19,6 +19,10 @@ public abstract class AbstractElement {
         webDriver.findElement(by).click();
     }
 
+    public String getText(){
+        return webDriver.findElement(getBy()).getText();
+    }
+
     protected By getBy(){
         return by;
     }

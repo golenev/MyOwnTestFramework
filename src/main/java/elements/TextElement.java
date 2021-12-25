@@ -7,7 +7,6 @@ public class TextElement extends AbstractElement{
     public TextElement(WebDriver webDriver, By by) {
         super(webDriver, by);
     }
-    public String getText(){
-        return this.webDriver.findElement(getBy()).getText();
-    }
+
+
 }

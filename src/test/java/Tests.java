@@ -3,9 +3,7 @@ import Driver.DriverFactory;
 import configurations.DriverConfiguration;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.AlertsFrameWindowsPage;
-import pages.MainPage;
-import pages.NestedFramesPage;
+import pages.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -33,7 +31,7 @@ public class Tests extends BaseTest {
     }
 
     @Test
-    public void secondCase(){
+    public void secondCase() throws InterruptedException {
         MainPage mainPage = new MainPage(webDriver);
         mainPage.alertFrameWinButtonOpen();
         AlertsFrameWindowsPage alertsFrameWindowsPage = new AlertsFrameWindowsPage(webDriver);
@@ -41,8 +39,33 @@ public class Tests extends BaseTest {
         NestedFramesPage nestedFramesPage = new NestedFramesPage(webDriver);
         nestedFramesPage.getChildFrameText();
         nestedFramesPage.getParentFrameText();
-
-
+        Thread.sleep(2000);
+        nestedFramesPage.framesButtonClick();
 
     }
+    @Test
+    public void thirdCase() throws InterruptedException {
+        MainPage mainPage = new MainPage(webDriver);
+        mainPage.elementsButtonClick();
+        TablesPage tablesPage = new TablesPage(webDriver);
+        tablesPage.webTablesClick();
+        tablesPage.addNewTablesClick();
+        tablesPage.fillingTheTable();
+
+    }
+
+    @Test
+    public void fourthCase() throws InterruptedException {
+        MainPage mainPage = new MainPage(webDriver);
+        mainPage.alertFrameWinButtonOpen();
+        mainPage.browserWindowsButtonClick();
+        BrowserWindowPage browserWindowPage = new BrowserWindowPage(webDriver);
+        browserWindowPage.newTabButtonClick();
+        browserWindowPage.elementButtonClick();
+        browserWindowPage.linksButtonClick();
+        browserWindowPage.simpleLinkButtonClick();
+    }
+
+
+
 }

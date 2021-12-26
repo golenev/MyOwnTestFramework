@@ -3,8 +3,8 @@ package elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class TextInput extends AbstractElement{
-    public TextInput(WebDriver webDriver,By by) {
+public class TextElements extends AbstractElement{
+    public TextElements(WebDriver webDriver, By by) {
         super(webDriver, by);
     }
     public String getText(){

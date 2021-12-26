@@ -22,6 +22,9 @@ public abstract class AbstractElement {
     public String getText(){
         return webDriver.findElement(getBy()).getText();
     }
+    public void setText(String value){
+        webDriver.findElement(getBy()).sendKeys(value);
+    }
 
     protected By getBy(){
         return by;

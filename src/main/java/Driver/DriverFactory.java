@@ -49,6 +49,7 @@ public class DriverFactory {
                 throw new NotFoundException("The input in config file is not matching our browser names");
         }
         webDriver.manage().window().maximize();
+        webDriver.get("chrome://settings/clearBrowserData"); //очищаем кэш
         return webDriver;
     }
 

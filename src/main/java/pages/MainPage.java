@@ -16,19 +16,32 @@ public class MainPage extends AbstractPage {
     WebDriverWait webDriverWait = new WebDriverWait(webDriver, 3000);
 
     private final String ALERT_FRAME_WIN_BUTTON = "alertFrameWinButton";
+    private final String ELEMENTS_BUTTON = "elementsButton";
+    private final String BROWSER_WINDOWS_BUTTON = "browserWindowsButton";
 
     public MainPage(WebDriver webDriver){
         super(webDriver);
         webDriver.get(DriverFactory.getUrl());
         Button alertFrameWinButton = new Button(webDriver, By.xpath("//h5[normalize-space()='Alerts, Frame & Windows']"));
+        Button elementsButton = new Button(webDriver, By.xpath("//h5[normalize-space()='Elements']"));
+        Button browserWindowsButton = new Button(webDriver, By.xpath("//span[normalize-space()='Browser Windows']"));
         Map <String, AbstractElement> locators = new HashMap<>();
         locators.put(ALERT_FRAME_WIN_BUTTON, alertFrameWinButton);
+        locators.put(ELEMENTS_BUTTON, elementsButton);
+        locators.put(BROWSER_WINDOWS_BUTTON, browserWindowsButton);
         this.locators = locators;
     }
 
 
     public void alertFrameWinButtonOpen(){
         locators.get(ALERT_FRAME_WIN_BUTTON).click();
+    }
+
+    public void elementsButtonClick(){
+        locators.get(ELEMENTS_BUTTON).click();
+    }
+    public void browserWindowsButtonClick(){
+        locators.get(BROWSER_WINDOWS_BUTTON).click();
     }
 
 }

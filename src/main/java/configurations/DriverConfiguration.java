@@ -25,8 +25,5 @@ public class DriverConfiguration {
         catch (NotFoundException e) {
             e.printStackTrace();
         }
-
-
-
     }
 }

@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Map;
+import java.util.Set;
 
 public abstract class AbstractPage {
 
@@ -21,6 +22,51 @@ public abstract class AbstractPage {
     protected AbstractPage(WebDriver webDriver){
         this.locators = null;
         this.webDriver = webDriver;
+    }
+    public String clickAndClosePrevious(Button button) throws InterruptedException {
+        return getWindowByClickedLink(button, true, true, false);
+    }
+
+    public String clickSwitchAndCloseAll (Button button) throws InterruptedException {
+        return getWindowByClickedLink(button, true, false, true);
+    }
+
+    public String clickAndCloseAll (Button button) throws InterruptedException {
+        return getWindowByClickedLink(button, false, false, true);
+    }
+
+    public String getWindowByClickedLink (Button button) throws InterruptedException {
+        return getWindowByClickedLink(button,false, false, false);
+    }
+
+    public String getWindowByClickedLink(Button button, boolean switchToTarget, boolean closePrevious, boolean closeAll) throws InterruptedException {
+        String currentWindow = webDriver.getWindowHandle();
+        button.click();
+        String targetWindow = webDriver.getWindowHandle();
+        if (closeAll) {
+            Set<String> windows = webDriver.getWindowHandles();
+            if (switchToTarget){
+                currentWindow = targetWindow;
+
+            }
+            for (String window : windows) {
+                if (window.equals(currentWindow)) continue;
+                webDriver.switchTo().window(window).close();
+            }
+            webDriver.switchTo().window(currentWindow);
+            return currentWindow;
+        }
+        if (closePrevious) {
+            webDriver.switchTo().window(currentWindow).close();
+            webDriver.switchTo().window(targetWindow);
+            return targetWindow;
+        }
+        if (switchToTarget && !currentWindow.equals(targetWindow)) {
+            webDriver.switchTo().window(targetWindow);
+            return targetWindow;
+        }
+        return currentWindow;
+
     }
 
     public AbstractElement getLocator(String name) {
@@ -45,5 +91,7 @@ public abstract class AbstractPage {
     public boolean clickWithAlert(Button button, int timeOut) {
        return clickWithAlert(button, timeOut, null);
     }
+
+
 
 }

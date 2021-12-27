@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
 
+import javax.management.Descriptor;
 import java.util.concurrent.TimeUnit;
 
 public class Tests extends BaseTest {
@@ -38,6 +39,7 @@ public class Tests extends BaseTest {
         alertsFrameWindowsPage.nestedFramesButtonClick();
         NestedFramesPage nestedFramesPage = new NestedFramesPage(webDriver);
         nestedFramesPage.getChildFrameText();
+        Thread.sleep(2000);
         nestedFramesPage.getParentFrameText();
         Thread.sleep(2000);
         nestedFramesPage.framesButtonClick();
@@ -60,12 +62,14 @@ public class Tests extends BaseTest {
         mainPage.alertFrameWinButtonOpen();
         mainPage.browserWindowsButtonClick();
         BrowserWindowPage browserWindowPage = new BrowserWindowPage(webDriver);
+        Thread.sleep(2000);
         browserWindowPage.newTabButtonClick();
+        Thread.sleep(2000);
         browserWindowPage.elementButtonClick();
+        Thread.sleep(2000);
         browserWindowPage.linksButtonClick();
+        Thread.sleep(2000);
         browserWindowPage.simpleLinkButtonClick();
     }
-
-
 
 }

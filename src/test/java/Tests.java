@@ -1,12 +1,13 @@
-
-import Driver.DriverFactory;
+import driver.DriverFactory;
 import configurations.DriverConfiguration;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.*;
-
-import javax.management.Descriptor;
-import java.util.concurrent.TimeUnit;
+import java.io.StringReader;
+import java.util.HashMap;
+import java.util.Map;
+import static driver.DriverFactory.getDriver;
 
 public class Tests extends BaseTest {
 
@@ -20,55 +21,89 @@ public class Tests extends BaseTest {
     }
 
     @Test
-    public void firstCase() {
-        MainPage mainPage = new MainPage(webDriver);
+    public void firstCase() throws InterruptedException {
+        //аллерты. всё работает
+        MainPage mainPage = new MainPage();
         mainPage.alertFrameWinButtonOpen();
-        AlertsFrameWindowsPage alertsFrameWindowsPage = new AlertsFrameWindowsPage(webDriver);
+        Thread.sleep(1000);
+        AlertsFrameWindowsPage alertsFrameWindowsPage = new AlertsFrameWindowsPage();
         alertsFrameWindowsPage.alertButtonClick();
-        alertsFrameWindowsPage.alertButtonFirstClick();
-        alertsFrameWindowsPage.alertButtonWithTimerClick();
-        alertsFrameWindowsPage.alertConfirmButtonClick();
-        alertsFrameWindowsPage.alertPromtButtonClick();
+        Assert.assertTrue(alertsFrameWindowsPage.alertButtonFirstClick());
+        Assert.assertTrue(alertsFrameWindowsPage.alertButtonWithTimerClick());
+        Assert.assertTrue(alertsFrameWindowsPage.alertConfirmButtonClick());
+        Assert.assertTrue(alertsFrameWindowsPage.alertPromtButtonClick());
+
     }
 
     @Test
-    public void secondCase() throws InterruptedException {
-        MainPage mainPage = new MainPage(webDriver);
+    public void secondCase() {
+        //работа с фреймами и семплами
+        MainPage mainPage = new MainPage();
         mainPage.alertFrameWinButtonOpen();
-        AlertsFrameWindowsPage alertsFrameWindowsPage = new AlertsFrameWindowsPage(webDriver);
+        AlertsFrameWindowsPage alertsFrameWindowsPage = new AlertsFrameWindowsPage();
         alertsFrameWindowsPage.nestedFramesButtonClick();
-        NestedFramesPage nestedFramesPage = new NestedFramesPage(webDriver);
+        NestedFramesPage nestedFramesPage = new NestedFramesPage();
         nestedFramesPage.getChildFrameText();
-        Thread.sleep(2000);
         nestedFramesPage.getParentFrameText();
-        Thread.sleep(2000);
+        getDriver().navigate().refresh(); //без этого кнопка ниже не кликается,ожидания не помогают
         nestedFramesPage.framesButtonClick();
+        FramesPage framesPage = new FramesPage();
+        System.out.println(framesPage.getBigSampleText() + "чьл-то");
+        System.out.println(framesPage.getLittleSampleText() + "чьл-то");
+        Assert.assertEquals(framesPage.getBigSampleText(), "This is a sample page", "несоответствие");
+        Assert.assertEquals(framesPage.getLittleSampleText(), "This is a sample page", "несоответствие");
 
     }
-    @Test
-    public void thirdCase() throws InterruptedException {
-        MainPage mainPage = new MainPage(webDriver);
+    @DataProvider (name = "regForm")
+    public Object [][] providerRegData(){
+        return new Object[][] {
+                {"Jon" , "Snow", "knownothing@gmail.com", "30", "3000", "alpha"},
+               // {"Buttercup" , "Cumbersnatch", "BudapestCandygram@mail.ru", "41", "2000", "beta"}
+        };
+    }
+
+
+    @Test (dataProvider = "regForm")
+    public void thirdCase(Object firstName, Object lastName, Object email, Object age, Object salary, Object department) throws InterruptedException {
+        //заполнение таблицы
+        MainPage mainPage = new MainPage();
+        TablesPage tablesPage = new TablesPage();
         mainPage.elementsButtonClick();
-        TablesPage tablesPage = new TablesPage(webDriver);
         tablesPage.webTablesClick();
-        tablesPage.addNewTablesClick();
-        tablesPage.fillingTheTable();
+        Map<String, String> data = new HashMap<>();
+        data.put(tablesPage.INPUT_FIRST_NAME, (String) firstName);
+        data.put(tablesPage.INPUT_LAST_NAME, (String) lastName);
+        data.put(tablesPage.INPUT_EMAIL, (String) email);
+        data.put(tablesPage.INPUT_AGE, (String) age);
+        data.put(tablesPage.INPUT_SALARY, (String) salary);
+        data.put(tablesPage.INPUT_DEPARTMENT, (String) department);
+        tablesPage.fillingTheTable(data);
+        Map<String, String> expectedAttributes = new HashMap<>();
+        expectedAttributes.put(UsersFromTablePage.FIRST_CELL, "Jon");
+        expectedAttributes.put(UsersFromTablePage.SECOND_CELL, "Snow");
+        expectedAttributes.put(UsersFromTablePage.THIRD_CELL, "knownothing@gmail.com");
+        expectedAttributes.put(UsersFromTablePage.FOURTH_CELL, "30");
+        expectedAttributes.put(UsersFromTablePage.FOURTH_CELL, "3000");
+        expectedAttributes.put(UsersFromTablePage.FOURTH_CELL, "alpha");
+        UsersFromTablePage usersFromTablePage = new UsersFromTablePage();
+        Map<String, String> actualAttributes = usersFromTablePage.getAttributes();
+//проверка двух карт после добалвения пользователя
+// Assert.assertEquals(expectedAttributes, actualAttributes);
+        usersFromTablePage.deleteUserButtonClick();
+//проверяем, что на месте только что удалённой строки ничего нет
+        Assert.assertNotEquals(usersFromTablePage.fourthLineGetText(),"Jon\tSnow\tknownothing@gmail.com\t30\t3000\talpha");
 
-    }
+            }
 
     @Test
     public void fourthCase() throws InterruptedException {
-        MainPage mainPage = new MainPage(webDriver);
+        MainPage mainPage = new MainPage();
         mainPage.alertFrameWinButtonOpen();
         mainPage.browserWindowsButtonClick();
         BrowserWindowPage browserWindowPage = new BrowserWindowPage(webDriver);
-        Thread.sleep(2000);
         browserWindowPage.newTabButtonClick();
-        Thread.sleep(2000);
         browserWindowPage.elementButtonClick();
-        Thread.sleep(2000);
         browserWindowPage.linksButtonClick();
-        Thread.sleep(2000);
         browserWindowPage.simpleLinkButtonClick();
     }
 

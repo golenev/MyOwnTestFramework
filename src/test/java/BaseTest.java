@@ -1,14 +1,5 @@
-import Driver.DriverFactory;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import io.qameta.allure.Attachment;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import driver.DriverFactory;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 
 public class BaseTest {
@@ -19,7 +10,7 @@ public class BaseTest {
 
     @BeforeTest
     public static void startBrowser() {
-        webDriver = DriverFactory.getDriver();
+        webDriver = DriverFactory.getDriver(true);
     }
 
     /*@BeforeClass

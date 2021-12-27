@@ -2,16 +2,17 @@ package elements;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import static driver.DriverFactory.getDriver;
 
 public class TextElements extends AbstractElement{
-    public TextElements(WebDriver webDriver, By by) {
-        super(webDriver, by);
+    public TextElements(By by) {
+        super(by);
     }
     public String getText(){
-        return webDriver.findElement(getBy()).getText();
+        return getDriver().findElement(getBy()).getText();
     }
     public void setText(String value){
-        webDriver.findElement(getBy()).sendKeys(value);
+        getDriver().findElement(getBy()).sendKeys(value);
     }
 
 }

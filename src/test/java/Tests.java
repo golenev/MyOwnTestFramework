@@ -21,7 +21,7 @@ public class Tests extends BaseTest {
         Assert.assertTrue(alertsFrameWindowsPage.alertButtonWithTimerClick());
         Assert.assertTrue(alertsFrameWindowsPage.alertConfirmButtonClick());
         Assert.assertTrue(alertsFrameWindowsPage.alertPromtButtonClick());
-        BASIC_LOGGER.debug("проверка логгера на первом тест-кейсе");
+        logger.info("окончание проверок первого тест кейса");
     }
 
     @Test
@@ -44,7 +44,7 @@ public class Tests extends BaseTest {
 //проверка "This is a sample page"
         Assert.assertEquals(framesPage.getBigSampleText(), "This is a sample page", "несоответствие1");
         Assert.assertEquals(framesPage.getLittleSampleText(), "This is a sample page", "несоответствие2");
-        BASIC_LOGGER.debug("проверка логгера на втором кейсе");
+        logger.debug("проверка логгера на втором кейсе");
 
     }
     @DataProvider (name = "regForm")
@@ -67,6 +67,7 @@ public class Tests extends BaseTest {
         tablesPage.fillingTheTable(data);
 //добавление в мапу ожидаемых значений ячеек четвёртой строки
         usersFromTablePage.getExpectedAttributes();
+        logger.info("добавление в мапу ожидаемых значений ячеек четвёртой строки");
         Map<String, String> actualAttributes = usersFromTablePage.getActualAttributes();
 //проверка двух карт после добавления пользователя
         Assert.assertEquals(usersFromTablePage.getExpectedAttributes(), actualAttributes);
@@ -74,7 +75,7 @@ public class Tests extends BaseTest {
         usersFromTablePage.deleteUserButtonClick();
 //проверяем, что на месте только что удалённой строки с данными нет этих данных
         Assert.assertNotEquals(usersFromTablePage.fourthLineGetText(),"Jon\tSnow\tknownothing@gmail.com\t30\t3000\talpha");
-        BASIC_LOGGER.debug("проверка логгера на третьем тест-кейсе");
+        logger.debug("проверка логгера на третьем тест-кейсе");
             }
 
     @Test
@@ -94,7 +95,7 @@ public class Tests extends BaseTest {
         browserWindowPage.linksButtonClick();
 //открываем новую вкладку и возвращаемся на первую, не закрывая вторую. Проверяем, что открыта первая вкладка по её String дескриптору
         Assert.assertEquals(browserWindowPage.simpleLinkButtonClick(), getDriver().getWindowHandle(), "ошибка, не та страница");
-        BASIC_LOGGER.debug("проверка логгера на четвёртом тест-кейсе");
+        logger.debug("проверка логгера на четвёртом тест-кейсе");
     }
 
 }

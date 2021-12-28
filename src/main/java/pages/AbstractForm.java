@@ -2,6 +2,8 @@ package pages;
 
 import elements.AbstractElement;
 import elements.Button;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,8 +14,7 @@ import java.util.Map;
 import java.util.Set;
 
 public abstract class AbstractForm {
-
-
+    public static Logger logger = LogManager.getLogger();
     protected Map<String, AbstractElement> locators;
 
     protected AbstractForm(){
@@ -29,6 +30,7 @@ public abstract class AbstractForm {
     }
 
     public String clickAndCloseAll (Button button) throws InterruptedException {
+        logger.info("открывает новое окно и закрывает его");
         return getWindowByClickedLink(button, false, false, true);
     }
 
@@ -71,6 +73,7 @@ public abstract class AbstractForm {
     }
 
     public boolean clickWithAlert(Button button, int timeOut, String text){
+      // logger.info("закрывает аллерт с ожиданием");
         try {
             button.click();
             Alert alert = (new WebDriverWait(getDriver(), timeOut)).until(ExpectedConditions.alertIsPresent());
@@ -86,6 +89,7 @@ public abstract class AbstractForm {
     }
 
     public boolean clickWithAlert(Button button, int timeOut) {
+        logger.info("закрывает аллерт с ожиданием");
        return clickWithAlert(button, timeOut, null);
     }
 

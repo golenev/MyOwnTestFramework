@@ -11,12 +11,12 @@ import static driver.DriverFactory.getDriver;
 import java.util.Map;
 import java.util.Set;
 
-public abstract class AbstractPage {
+public abstract class AbstractForm {
 
 
     protected Map<String, AbstractElement> locators;
 
-    protected AbstractPage(){
+    protected AbstractForm(){
         this.locators = null;
 
     }

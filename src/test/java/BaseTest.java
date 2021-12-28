@@ -1,33 +1,24 @@
 import driver.DriverFactory;
+
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
+import configurations.DriverConfiguration;
+import org.testng.log4testng.Logger;
+import static driver.DriverFactory.getDriver;
+
 
 public class BaseTest {
    static WebDriver webDriver;
-
-
-
 
     @BeforeTest
     public static void startBrowser() {
         webDriver = DriverFactory.getDriver(true);
     }
-
-    /*@BeforeClass
-    void setupBrowser() {
-
-        webDriver = new ChromeDriver();
-        webDriver.manage().window().maximize();
-        //webDriverWait = new WebDriverWait(webDriver, 10);
-        //actions = new Actions(webDriver);
-        //webDriver.get("chrome://settings/clearBrowserData"); //очищаем кэш
-       //WebDriverManager.chromedriver().setup();
-
-    }*/
+    protected static final org.testng.log4testng.Logger BASIC_LOGGER = Logger.getLogger(BaseTest.class);
 
 
-    // @AfterAll
-    // public static void tearsFall() {
-    //    webDriver.close();
-    //   }
+     @AfterClass
+      public static void tearsFall() {
+        getDriver().quit();
+       }
 }

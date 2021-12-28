@@ -3,8 +3,8 @@ import configurations.DriverConfiguration;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.log4testng.Logger;
 import pages.*;
-import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 import static driver.DriverFactory.getDriver;
@@ -12,99 +12,89 @@ import static driver.DriverFactory.getDriver;
 public class Tests extends BaseTest {
 
     @Test
-    public void checkConfig(){
-        Assert.assertEquals("CHROME", DriverConfiguration.props.getProperty("BROWSER"));
-        Assert.assertEquals("https://demoqa.com/", DriverConfiguration.props.getProperty("URL"));
-        Assert.assertEquals("https://demoqa.com/", DriverFactory.getUrl());
-        Assert.assertEquals("chrome", DriverFactory.getBrowserName());
-        //Assert.assertTrue(DriverFactory.getDriver() instanceof WebDriver);
-    }
-
-    @Test
-    public void firstCase() throws InterruptedException {
-        //аллерты. всё работает
+    public void firstCase() {
         MainPage mainPage = new MainPage();
         mainPage.alertFrameWinButtonOpen();
-        Thread.sleep(1000);
         AlertsFrameWindowsPage alertsFrameWindowsPage = new AlertsFrameWindowsPage();
         alertsFrameWindowsPage.alertButtonClick();
         Assert.assertTrue(alertsFrameWindowsPage.alertButtonFirstClick());
         Assert.assertTrue(alertsFrameWindowsPage.alertButtonWithTimerClick());
         Assert.assertTrue(alertsFrameWindowsPage.alertConfirmButtonClick());
         Assert.assertTrue(alertsFrameWindowsPage.alertPromtButtonClick());
-
+        BASIC_LOGGER.debug("проверка логгера на первом тест-кейсе");
     }
 
     @Test
     public void secondCase() {
         //работа с фреймами и семплами
         MainPage mainPage = new MainPage();
+//проверка открытия главной страницы
+        Assert.assertTrue(mainPage.isJoinNowButtonPresence());
         mainPage.alertFrameWinButtonOpen();
         AlertsFrameWindowsPage alertsFrameWindowsPage = new AlertsFrameWindowsPage();
         alertsFrameWindowsPage.nestedFramesButtonClick();
         NestedFramesPage nestedFramesPage = new NestedFramesPage();
-        nestedFramesPage.getChildFrameText();
-        nestedFramesPage.getParentFrameText();
-        getDriver().navigate().refresh(); //без этого кнопка ниже не кликается,ожидания не помогают
+//проверка надписей "Parent frame" и "Child Iframe"
+        Assert.assertEquals(nestedFramesPage.getChildFrameText(), "Child Iframe", "ошибка, несоответствие");
+        Assert.assertEquals(nestedFramesPage.getParentFrameText(), "Parent frame", "ошибка, несоответствие");
+//без этого кнопка ниже не кликается,ожидания не помогают
+        getDriver().navigate().refresh();
         nestedFramesPage.framesButtonClick();
         FramesPage framesPage = new FramesPage();
-        System.out.println(framesPage.getBigSampleText() + "чьл-то");
-        System.out.println(framesPage.getLittleSampleText() + "чьл-то");
-        Assert.assertEquals(framesPage.getBigSampleText(), "This is a sample page", "несоответствие");
-        Assert.assertEquals(framesPage.getLittleSampleText(), "This is a sample page", "несоответствие");
+//проверка "This is a sample page"
+        Assert.assertEquals(framesPage.getBigSampleText(), "This is a sample page", "несоответствие1");
+        Assert.assertEquals(framesPage.getLittleSampleText(), "This is a sample page", "несоответствие2");
+        BASIC_LOGGER.debug("проверка логгера на втором кейсе");
 
     }
     @DataProvider (name = "regForm")
     public Object [][] providerRegData(){
         return new Object[][] {
                 {"Jon" , "Snow", "knownothing@gmail.com", "30", "3000", "alpha"},
-               // {"Buttercup" , "Cumbersnatch", "BudapestCandygram@mail.ru", "41", "2000", "beta"}
         };
     }
-
-
     @Test (dataProvider = "regForm")
-    public void thirdCase(Object firstName, Object lastName, Object email, Object age, Object salary, Object department) throws InterruptedException {
-        //заполнение таблицы
+    public void thirdCase(Object firstName, Object lastName, Object email, Object age, Object salary, Object department) {
         MainPage mainPage = new MainPage();
         TablesPage tablesPage = new TablesPage();
         mainPage.elementsButtonClick();
+//переходим на страницу WebTables
         tablesPage.webTablesClick();
-        Map<String, String> data = new HashMap<>();
-        data.put(tablesPage.INPUT_FIRST_NAME, (String) firstName);
-        data.put(tablesPage.INPUT_LAST_NAME, (String) lastName);
-        data.put(tablesPage.INPUT_EMAIL, (String) email);
-        data.put(tablesPage.INPUT_AGE, (String) age);
-        data.put(tablesPage.INPUT_SALARY, (String) salary);
-        data.put(tablesPage.INPUT_DEPARTMENT, (String) department);
-        tablesPage.fillingTheTable(data);
-        Map<String, String> expectedAttributes = new HashMap<>();
-        expectedAttributes.put(UsersFromTablePage.FIRST_CELL, "Jon");
-        expectedAttributes.put(UsersFromTablePage.SECOND_CELL, "Snow");
-        expectedAttributes.put(UsersFromTablePage.THIRD_CELL, "knownothing@gmail.com");
-        expectedAttributes.put(UsersFromTablePage.FOURTH_CELL, "30");
-        expectedAttributes.put(UsersFromTablePage.FOURTH_CELL, "3000");
-        expectedAttributes.put(UsersFromTablePage.FOURTH_CELL, "alpha");
         UsersFromTablePage usersFromTablePage = new UsersFromTablePage();
-        Map<String, String> actualAttributes = usersFromTablePage.getAttributes();
-//проверка двух карт после добалвения пользователя
-// Assert.assertEquals(expectedAttributes, actualAttributes);
+        Map<String, String> data = usersFromTablePage.packAttributes(firstName, lastName, email,age, salary, department);
+//это данные для дата провайдера, они в другой класс не переносятся
+       //заполняем таблицу данными из мапы выше
+        tablesPage.fillingTheTable(data);
+//добавление в мапу ожидаемых значений ячеек четвёртой строки
+        usersFromTablePage.getExpectedAttributes();
+        Map<String, String> actualAttributes = usersFromTablePage.getActualAttributes();
+//проверка двух карт после добавления пользователя
+        Assert.assertEquals(usersFromTablePage.getExpectedAttributes(), actualAttributes);
+//удаляем созданного пользователя
         usersFromTablePage.deleteUserButtonClick();
-//проверяем, что на месте только что удалённой строки ничего нет
+//проверяем, что на месте только что удалённой строки с данными нет этих данных
         Assert.assertNotEquals(usersFromTablePage.fourthLineGetText(),"Jon\tSnow\tknownothing@gmail.com\t30\t3000\talpha");
-
+        BASIC_LOGGER.debug("проверка логгера на третьем тест-кейсе");
             }
 
     @Test
     public void fourthCase() throws InterruptedException {
         MainPage mainPage = new MainPage();
+//проверка открытия главной страницы
+        Assert.assertTrue(mainPage.isJoinNowButtonPresence());
         mainPage.alertFrameWinButtonOpen();
         mainPage.browserWindowsButtonClick();
         BrowserWindowPage browserWindowPage = new BrowserWindowPage(webDriver);
-        browserWindowPage.newTabButtonClick();
+ //проверка Открыта страница с формой Browser Windows
+        Assert.assertEquals(browserWindowPage.mainHeaderText(), "Browser Windows", "ошибка, несоответствие");
+//Кликнуть на кнопку New Tab и сразу закрыть. Метод возвращает уникальное строковое значение страницы, поэтому его тип String
+        Assert.assertEquals(browserWindowPage.newTabButtonClick(), getDriver().getWindowHandle(), "ошибка");
         browserWindowPage.elementButtonClick();
+//Открыта страница с формой Browser Windows
         browserWindowPage.linksButtonClick();
-        browserWindowPage.simpleLinkButtonClick();
+//открываем новую вкладку и возвращаемся на первую, не закрывая вторую. Проверяем, что открыта первая вкладка по её String дескриптору
+        Assert.assertEquals(browserWindowPage.simpleLinkButtonClick(), getDriver().getWindowHandle(), "ошибка, не та страница");
+        BASIC_LOGGER.debug("проверка логгера на четвёртом тест-кейсе");
     }
 
 }

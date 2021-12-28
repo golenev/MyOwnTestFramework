@@ -2,6 +2,7 @@ package driver;
 
 import configurations.DriverConfiguration;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,6 +15,7 @@ public class DriverFactory {
     private static String URL = DriverConfiguration.props.getProperty("URL");
     private static String BROWSER = DriverConfiguration.props.getProperty("BROWSER");
     private static WebDriver webDriver = null;
+    static Dimension dimension = new Dimension(1920, 1080);
 
     public static String getUrl(){
         return URL;
@@ -51,7 +53,7 @@ public class DriverFactory {
             default:
                 throw new NotFoundException("The input in config file is not matching our browser names");
         }
-        webDriver.manage().window().maximize();
+        webDriver.manage().window().setSize(dimension);
         return webDriver;
     }
 }

@@ -13,15 +13,16 @@ public class BaseTest {
    static WebDriver webDriver;
     public static Logger logger = LogManager.getLogger();
 
-    @BeforeTest
+    @BeforeMethod
+    /**
+     * обоснование внутри исходного класса
+     */
     public static void startBrowser() {
         webDriver = DriverFactory.getDriver(true);
     }
 
-
-
-     @AfterClass
-      public static void tearsFall() {
-        getDriver().quit();
-       }
-}
+    @AfterClass
+     public static void tearsFall() {
+     getDriver().quit();
+     }
+  }

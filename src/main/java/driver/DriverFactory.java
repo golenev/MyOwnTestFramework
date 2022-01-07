@@ -8,27 +8,39 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
+import static configurations.DriverConfiguration.getMainPageURL;
+import static configurations.DriverConfiguration.getBrowserName;
 
 
 public class DriverFactory {
-    private static String URL = DriverConfiguration.props.getProperty("URL");
-    private static String BROWSER = DriverConfiguration.props.getProperty("BROWSER");
+
+    private static String URL = getMainPageURL();
+    private static String BROWSER = getBrowserName();
     private static WebDriver webDriver = null;
-    static Dimension dimension = new Dimension(1920, 1080);
+    //static Dimension dimension = new Dimension(1920, 1080);
+    static Dimension dimension = new Dimension(DriverConfiguration.getDimensionXLineToInt(), DriverConfiguration.getDimensionYLineToInt());
 
     public static String getUrl(){
         return URL;
     }
 
-    public static String getBrowserName(){
-        return BROWSER.toLowerCase();
-    }
 
+    /**
+     * Синглтон для всех страниц при использовании
+     * вне режима тестирования. Драйвер создаётся единожды,
+     * что ускоряет работу приложения, экономит вычислительные ресурсы
+     * @return
+     */
     public static WebDriver getDriver(){
         return getDriver(URL, false);
     }
 
+    /**
+     * При тестировании ноебходимо пересоздавать
+     * драйвер до открытия каждой страницы. Флаг force принудительно пересоздаёт его
+     * @param force
+     * @return
+     */
     public static WebDriver getDriver(boolean force){
         return getDriver(URL, force);
     }

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9ed89a81-868c-4b56-80ca-fbdf32cbbf5e" name="Changes" comment="Мой фреймворк для тестирования UI" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="22vBDvhFrinHFrfVj3nCooibukI" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$" />
+  </component>
+  <component name="RunManager" selected="TestNG.Tests.thirdCase">
+    <configuration name="Tests.fifthCase" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="selenium1test" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Tests" />
+      <option name="METHOD_NAME" value="fifthCase" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tests.firstCase" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="selenium1test" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Tests" />
+      <option name="METHOD_NAME" value="firstCase" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tests.fourthCase" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="selenium1test" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Tests" />
+      <option name="METHOD_NAME" value="fourthCase" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tests.secondCase" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="selenium1test" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Tests" />
+      <option name="METHOD_NAME" value="secondCase" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tests.thirdCase" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="selenium1test" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Tests" />
+      <option name="METHOD_NAME" value="thirdCase" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="TestNG.Tests.thirdCase" />
+        <item itemvalue="TestNG.Tests.firstCase" />
+        <item itemvalue="TestNG.Tests.fifthCase" />
+        <item itemvalue="TestNG.Tests.secondCase" />
+        <item itemvalue="TestNG.Tests.fourthCase" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9ed89a81-868c-4b56-80ca-fbdf32cbbf5e" name="Changes" comment="" />
+      <created>1640708067511</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1640708067511</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Очистка">
+      <created>1640708085399</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1640708085399</updated>
+    </task>
+    <task id="LOCAL-00002" summary="перезалив">
+      <created>1640708683716</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1640708683716</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Удаление лишнего">
+      <created>1640708745392</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1640708745392</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Ещё рефакторинг">
+      <created>1640709162543</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1640709162543</updated>
+    </task>
+    <task id="LOCAL-00005" summary="5,6,7 кейсы">
+      <created>1641322769527</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1641322769527</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Исправил структуру - убрал хэшмап, локаторы перенёс в поля">
+      <created>1641417520132</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1641417520132</updated>
+    </task>
+    <task id="LOCAL-00007" summary="дополнительный рефакторинг">
+      <created>1641463202389</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1641463202389</updated>
+    </task>
+    <task id="LOCAL-00008" summary="рефакторинг + много логов">
+      <created>1641492504635</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1641492504635</updated>
+    </task>
+    <task id="LOCAL-00009" summary="добавил ещё логи, убрал хардкод, перенёс часть методов в пакет helpers">
+      <created>1641579959730</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1641579959730</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Мой фреймворк для тестирования UI">
+      <created>1641580468005</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1641580468005</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Очистка" />
+    <MESSAGE value="перезалив" />
+    <MESSAGE value="Удаление лишнего" />
+    <MESSAGE value="Ещё рефакторинг" />
+    <MESSAGE value="5,6,7 кейсы" />
+    <MESSAGE value="Исправил структуру - убрал хэшмап, локаторы перенёс в поля" />
+    <MESSAGE value="дополнительный рефакторинг" />
+    <MESSAGE value="рефакторинг + много логов" />
+    <MESSAGE value="добавил ещё логи, убрал хардкод, перенёс часть методов в пакет helpers" />
+    <MESSAGE value="Мой фреймворк для тестирования UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Мой фреймворк для тестирования UI" />
+  </component>
+</project>

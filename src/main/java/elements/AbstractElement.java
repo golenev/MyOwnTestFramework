@@ -1,6 +1,5 @@
 package elements;
 
-import helpers.ConstantTimeClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -40,41 +39,27 @@ public abstract class AbstractElement {
             getElement().click();
 
         }
-
-    public boolean isPresence(){
-        logger.info("проверяет, отображается ли элемент " + uniqueName);
-        return getElement().isDisplayed();
-    }
-
-    public String getText(){
+        public String getText(){
         logger.info("получает текст из текстового элемента " + uniqueName);
         return getElement().getText();
     }
-
     public String getAttrValue(){
         logger.info("получает текст из аттрибута Value " + uniqueName);
         return getElement().getAttribute("value");
     }
-
     public String getAttrAriaValue(){
         logger.info("получает текст из аттрибута Value " + uniqueName);
         return getElement().getAttribute("aria-valuenow");
     }
-
-
-
     public void setText(String value){
         logger.info("передаёт текстовое значение в элемент " + uniqueName);
         getElement().sendKeys(value);
     }
-
     public void setKeys (Keys value){
 
         getElement().sendKeys();
     }
-
     protected By getBy(){
         return by;
     }
-
 }

@@ -11,20 +11,16 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import static configurations.DriverConfiguration.getMainPageURL;
 import static configurations.DriverConfiguration.getBrowserName;
 
-
 public class DriverFactory {
 
     private static String URL = getMainPageURL();
     private static String BROWSER = getBrowserName();
     private static WebDriver webDriver = null;
-    //static Dimension dimension = new Dimension(1920, 1080);
     static Dimension dimension = new Dimension(DriverConfiguration.getDimensionXLineToInt(), DriverConfiguration.getDimensionYLineToInt());
 
     public static String getUrl(){
         return URL;
     }
-
-
     /**
      * Синглтон для всех страниц при использовании
      * вне режима тестирования. Драйвер создаётся единожды,

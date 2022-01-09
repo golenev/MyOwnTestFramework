@@ -6,7 +6,6 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import static driver.DriverFactory.getDriver;
 
 public class AlertOperations {

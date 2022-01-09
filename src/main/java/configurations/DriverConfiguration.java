@@ -1,7 +1,6 @@
 package configurations;
 
 import org.openqa.selenium.NotFoundException;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -17,11 +16,9 @@ public class DriverConfiguration {
    public static String getExplicitWait(){
        return props.getProperty("EXPLICIT_WAIT");
    }
-
    public static Integer getExplicitWaitToInt(){
        return Integer.parseInt(getExplicitWait());
    }
-
    public static String getMaxValueRandomNumbers(){
        return props.getProperty("MAX_VALUE_RANDOM_NUMBERS");
    }
@@ -37,14 +34,12 @@ public class DriverConfiguration {
    public static String getCheckFrequencyTime(){
        return props.getProperty("CHECK_FREQUENCY_TIME");
    }
-
    public static Integer getCheckFrequencyTimeToInt(){
        return Integer.parseInt(getCheckFrequencyTime());
    }
    public static String getDimensionXLine(){
        return props.getProperty("DIMENSION_X_LINE");
    }
-
    public static Integer getDimensionXLineToInt(){
        return Integer.parseInt(getDimensionXLine());
    }
@@ -54,10 +49,6 @@ public class DriverConfiguration {
    public static Integer getDimensionYLineToInt(){
        return Integer.parseInt(getDimensionYLine());
    }
-
-
-
-
     /**
      * Прежде чем обращаться к свойствам их нужно считать из файла.
      * При отсутствии нужных свойств необходимо возбудить исключение,

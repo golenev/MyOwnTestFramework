@@ -15,5 +15,4 @@ public class GeneratorRandomNumber {
                 .findFirst()
                 .getAsInt();
     }
-
 }

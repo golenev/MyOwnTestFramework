@@ -2,17 +2,8 @@ package helpers;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import static driver.DriverFactory.getDriver;
 
 public class GeneratorActualDateAndTime {
